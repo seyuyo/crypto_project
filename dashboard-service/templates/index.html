@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Trend Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        #chartContainer {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Crypto Trend Dashboard</h1>
+<p>1 órás és 24 órás átlagárak vizuális összehasonlítása</p>
+
+<div id="chartContainer">
+    <canvas id="trendChart"></canvas>
+</div>
+
+<script>
+async function loadData() {
+    const response = await fetch("http://localhost:5002/trends");
+    const data = await response.json();
+
+    const labels = [...new Set(data.map(row => row.symbol.toUpperCase()))];
+
+    const latestStats = labels.map(symbol => {
+        const rows = data.filter(r => r.symbol.toUpperCase() === symbol);
+        return rows[0]; // Legfrissebb sor
+    });
+
+    const avg1h = latestStats.map(r => r.avg_1h);
+    const avg24h = latestStats.map(r => r.avg_24h);
+
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: '1 órás átlagár (USD)',
+                    data: avg1h
+                },
+                {
+                    label: '24 órás átlagár (USD)',
+                    data: avg24h
+                }
+            ]
+        }
+    });
+}
+
+loadData();
+</script>
+
+</body>
+</html>
