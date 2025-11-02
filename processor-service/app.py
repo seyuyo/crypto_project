@@ -13,6 +13,7 @@ DB_CONFIG = {
     "password": os.getenv("DB_PASSWORD")
 }
 
+# Átlagol és trendet számol az elmúlt 1h és 24h értékei alapján
 def calculate_trends():
     now = datetime.utcnow()
     one_hour_ago = now - timedelta(hours=1)

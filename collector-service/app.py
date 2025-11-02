@@ -7,6 +7,7 @@ import os
 
 app = Flask(__name__)
 
+# Adatbázis konfiguráció
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "db"),
     "dbname": os.getenv("DB_NAME", "crypto"),
@@ -14,8 +15,9 @@ DB_CONFIG = {
     "password": os.getenv("DB_PASSWORD")
 }
 
-
+# Lekéri az aktuális coin árakat és eltárolja az adatbázisban.
 def fetch_and_store_prices():
+    # Az API, ahonnan az árakat lekérdezzük
     url = "https://api.coingecko.com/api/v3/coins/markets"
     params = {
         "vs_currency": "usd",

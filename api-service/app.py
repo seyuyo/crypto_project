@@ -13,6 +13,10 @@ DB_CONFIG = {
     "password": os.getenv("DB_PASSWORD")
 }
 
+"""
+Visszaadja az 1 órás és 24 órás átlagárakat coinonként.
+Dashboard is ezt használja.
+"""
 @app.route("/trends")
 def get_trends():
     with psycopg.connect(**DB_CONFIG) as conn:
