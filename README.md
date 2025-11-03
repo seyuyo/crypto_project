@@ -10,6 +10,25 @@ A rendszer automatikusan lekéri a legfrissebb árakat, trendeket számol belől
 
 ---
 
+### Követelmények
+
+A projekt futtatásához az alábbiak szükségesek:
+
+- Python 3.11.7
+
+- Docker és Docker Compose
+
+- PostgreSQL (a Docker-compose automatikusan telepíti és futtatja, ezért nem kell külön felrakni)
+
+- Javasolt fejlesztőkörnyezet: PyCharm / VS Code
+
+- Operációs rendszer: Windows / Linux / macOS (bármelyiken fut)
+
+A projekt teljes mértékben lokálisan futtatható, nincs szükség külső szerverre.
+A szolgáltatások a Docker Compose segítségével indulnak el, és automatikusan hálózatba rendeződnek.
+
+---
+
 ## 🧩 Architektúra
 
 | Szolgáltatás | Port | Leírás |
